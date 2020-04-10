@@ -1,3 +1,7 @@
+function doubleSet(timeToElapse) {
+  return Math.ceil(2 ** (timeToElapse / 3));
+}
+
 const covid19ImpactEstimator = (data) => {
   const output = {};
 
@@ -18,14 +22,9 @@ const covid19ImpactEstimator = (data) => {
   const power = doubleSet(data.timeToElapse);
   impact.infectionsByRequestedTime = impact.currentlyInfected * power;
 
-  severeImpact.infectionsByRequestedTime =
-    severeImpact.currentlyInfected * power;
+  severeImpact.infectionsByRequestedTime = severeImpact.currentlyInfected * power;
 
   return output;
 };
-
-function doubleSet(timeToElapse) {
-  return Math.ceil(Math.pow(2, timeToElapse / 3));
-}
 
 export default covid19ImpactEstimator;
