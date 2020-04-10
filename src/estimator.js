@@ -2,20 +2,20 @@ function doubleSet(timeToElapse) {
   return Math.ceil(2 ** (timeToElapse / 3));
 }
 
-const conversionFunc = (periodType) => {
+const convertToDays = (periodType, timeToElapse) => {
   let days;
 
   switch (periodType) {
     case 'weeks':
-      days = data.timeToElapse * 7;
+      days = timeToElapse * 7;
       break;
 
     case 'months':
-      days = data.timeToElapse * 30;
+      days = timeToElapse * 30;
       break;
 
     default:
-      days = data.timeToElapse;
+      days = timeToElapse;
   }
   return days;
 };
@@ -37,13 +37,15 @@ const covid19ImpactEstimator = (data) => {
 
   severeImpact.currentlyInfected = data.reportedCases * 50;
 
-  const powerDays = doubleSet(data.timeToElapse);
+  const days = convertToDays(data.periodType, data.timeToElapse);
+
+  const powerDays = doubleSet(days);
 
   impact.infectionsByRequestedTime = impact.currentlyInfected * powerDays;
 
   severeImpact.infectionsByRequestedTime = severeImpact.currentlyInfected * powerDays;
 
-  conversionFunc(data.periodType);
+  
 
   return output;
 };
