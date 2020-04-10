@@ -3,7 +3,7 @@ function doubleSet(timeToElapse) {
 }
 
 function weeks(timeToElapse) {
-  let week = Math.floor(timeToElapse / 7);
+  const week = Math.floor(timeToElapse / 7);
   return Math.ceil((3 ** 3) * week);
 }
 
@@ -31,7 +31,7 @@ const covid19ImpactEstimator = (data) => {
   impact.infectionsByRequestedTime = impact.currentlyInfected * powerWeek;
 
   severeImpact.infectionsByRequestedTime = severeImpact.currentlyInfected * powerDays;
-  severeImpact.infectionsByRequestedTime =severeImpact.currentlyInfected * powerWeek;
+  severeImpact.infectionsByRequestedTime = severeImpact.currentlyInfected * powerWeek;
 
   return output;
 };
